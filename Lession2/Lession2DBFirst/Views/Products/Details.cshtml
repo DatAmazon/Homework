@@ -1,0 +1,33 @@
+﻿@model Lession2DBFirst.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3 class="text-primary">Chi tiết SP - @Model.ProductID</h3>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên SP
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Giá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Lưu", "Edit", new { id = Model.ProductID}, new { @class = "btn btn-primary"}) |
+    @Html.ActionLink("Trở lại", "Index", null, new {@class ="btn btn-primary"})
+</p>
