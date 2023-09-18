@@ -4,36 +4,55 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Danh sách SP</h2>
+<h3>Danh sách SP</h3>
 
-<p>
-    @Html.ActionLink("Thêm mới", "Create")
+@using (Html.BeginForm())
+{
+    <p>
+        <input name="SearchString" class="btn-outline-primary" placeholder="Nhập tên sp cần tìm kiếm" />
+        <input type="submit" value="Tìm" class="btn btn-outline-success" style="margin-bottom: 3px; padding: 2px 15px; "/>
+    </p>
+}
+
+
+<p style="float:right;">
+    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-info text-right" })
 </p>
-<table class="table">
-    <tr>
-        <th>
+
+<table class="table table-striped table-bordered">
+    <tr class="table-dark">
+        <th style="text-align: center">
+            Mã SP
+        </th>
+        <th style="text-align: center">
             Tên SP
         </th>
-        <th>
+        <th style="text-align: center">
             Giá
         </th>
-        <th></th>
+        <th style="text-align: center">
+            Thao tác
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.ActionLink("Lưu", "Edit", new { id=item.ProductID }) |
-            @Html.ActionLink("Chi tiết", "Details", new { id=item.ProductID }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.ProductID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr class="table-info">
+            <td>
+                @item.ProductID
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Price
+            </td>
+            <td style="text-align: center">
+                @Html.ActionLink("Sửa", "Edit", new { id = item.ProductID }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.ProductID }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
 
 </table>

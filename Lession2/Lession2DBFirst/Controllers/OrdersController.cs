@@ -15,9 +15,15 @@ namespace Lession2DBFirst.Controllers
         private Lession2DBEntities db = new Lession2DBEntities();
 
         // GET: Orders
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Orders.ToList());
+            var ord = from o in db.Orders
+                      select o;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                ord = ord.Where(o =>o.CustomerName.Contains(searchString));
+            }
+            return View(ord);
         }
 
         // GET: Orders/Details/5

@@ -1,56 +1,71 @@
 ﻿@model Lession2DBFirst.Models.Order_Detail
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Xóa";
 }
 
-<h2>Delete</h2>
+<h2>Xóa</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to Xóa this?</h3>
 <div>
-    <h4>Order_Detail</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="table-dark">
+                <th style="text-align: center">
+                    Mã CTĐH
+                </th>
+                <th style="text-align: center">
+                    Mã SP
+                </th>
+                <th style="text-align: center">
+                    Mã đơn hàng
+                </th>
+                <th style="text-align: center">
+                    Số lượng
+                </th>
+                <th style="text-align: center">
+                    Giá
+                </th>
+                <th style="text-align: center">
+                    Thao tác
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-info">
+                <td>
+                    @Model.OrderDetailId
+                </td>
+                <td>
+                    @Model.ProductId
+                </td>
+                <td>
+                    @Model.OrderId
+                </td>
+                <td>
+                    @Model.Quantity
+                </td>
+                <td>
+                    @Model.UnitPrice
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = Model.OrderDetailId }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = Model.OrderDetailId }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.OrderDetailId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UnitPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Order.OrderId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Order.OrderId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Product.Name)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-warning" }) |
+            <input type="submit" value="Xóa" class="btn btn-danger" />
         </div>
     }
 </div>

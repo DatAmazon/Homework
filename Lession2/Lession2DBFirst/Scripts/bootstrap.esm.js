@@ -460,7 +460,7 @@ function removeHandler(element, events, typeEvent, handler, delegationSelector) 
   }
 
   element.removeEventListener(typeEvent, fn, Boolean(delegationSelector));
-  delete events[typeEvent][fn.uidEvent];
+  Delete events[typeEvent][fn.uidEvent];
 }
 
 function removeNamespacedHandlers(element, events, typeEvent, namespace) {
@@ -632,10 +632,10 @@ const Data = {
     }
 
     const instanceMap = elementMap.get(element);
-    instanceMap.delete(key); // free up element references if there are no instances left for an element
+    instanceMap.Delete(key); // free up element references if there are no instances left for an element
 
     if (instanceMap.size === 0) {
-      elementMap.delete(element);
+      elementMap.Delete(element);
     }
   }
 
@@ -4199,7 +4199,7 @@ class Tooltip extends BaseComponent {
 
     for (const dataAttribute of Object.keys(dataAttributes)) {
       if (DISALLOWED_ATTRIBUTES.has(dataAttribute)) {
-        delete dataAttributes[dataAttribute];
+        Delete dataAttributes[dataAttribute];
       }
     }
 

@@ -1,40 +1,34 @@
 ﻿@model Lession2DBFirst.Models.Product
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Xóa";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
+<h4 style="color: red">Bạn có chắc chắn muốn xóa SP có ID - @Model.ProductID</h4>
 <div>
-    <h4>Product</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="table-dark">
+                <th style="text-align: center">Tên SP</th>
+                <th style="text-align: center">Giá</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-info">
+                <td>@Model.Name</td>
+                <td>@Model.Price</td>
+            </tr>
+        </tbody>
+    </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<div class="form-actions no-color">
+    @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-warning" }) |
+    <input type="submit" value="Xóa" class="btn btn-danger" /> 
+</div>
     }
 </div>

@@ -14,13 +14,22 @@ namespace Lession2DBFirst.Controllers
     {
         private Lession2DBEntities db = new Lession2DBEntities();
 
-        // GET: Products
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    return View(db.Products.ToList());
+        //}
+
+        public ActionResult Index(string searchString)
         {
-            return View(db.Products.ToList());
+            var pro = from p in db.Products
+                      select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                pro = pro.Where(s => s.Name.Contains(searchString));
+            }
+            return View(pro);
         }
 
-        // GET: Products/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,7 +49,6 @@ namespace Lession2DBFirst.Controllers
             return View();
         }
 
-        // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -57,7 +65,6 @@ namespace Lession2DBFirst.Controllers
             return View(product);
         }
 
-        // GET: Products/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -72,7 +79,6 @@ namespace Lession2DBFirst.Controllers
             return View(product);
         }
 
-        // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -88,7 +94,6 @@ namespace Lession2DBFirst.Controllers
             return View(product);
         }
 
-        // GET: Products/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -103,7 +108,6 @@ namespace Lession2DBFirst.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

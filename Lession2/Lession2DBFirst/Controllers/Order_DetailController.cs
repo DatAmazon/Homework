@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 using Lession2DBFirst.Models;
@@ -14,14 +15,24 @@ namespace Lession2DBFirst.Controllers
     {
         private Lession2DBEntities db = new Lession2DBEntities();
 
-        // GET: Order_Detail
-        public ActionResult Index()
+        public ActionResult Index(string search)
         {
-            var order_Detail = db.Order_Detail.Include(o => o.Order).Include(o => o.Product);
-            return View(order_Detail.ToList());
+
+            var order_Detail = from od in db.Order_Detail
+                               select od;
+            
+            if (!string.IsNullOrEmpty(search) && int.TryParse(search, out int num))
+            {
+                order_Detail = order_Detail.Where(od => od.OrderId == num);
+
+            }
+            return View(order_Detail);
+
+            //var order_Detail = db.Order_Detail.Include(o => o.Order).Include(o => o.Product);
+            //var order_Detail = db.Order_Detail.Include(o => o.Order).Include(o => o.Product);
+            //return View(order_Detail.ToList());
         }
 
-        // GET: Order_Detail/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +47,6 @@ namespace Lession2DBFirst.Controllers
             return View(order_Detail);
         }
 
-        // GET: Order_Detail/Create
         public ActionResult Create()
         {
             ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId");
@@ -44,7 +54,6 @@ namespace Lession2DBFirst.Controllers
             return View();
         }
 
-        // POST: Order_Detail/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -63,7 +72,6 @@ namespace Lession2DBFirst.Controllers
             return View(order_Detail);
         }
 
-        // GET: Order_Detail/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,7 +88,6 @@ namespace Lession2DBFirst.Controllers
             return View(order_Detail);
         }
 
-        // POST: Order_Detail/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -98,7 +105,6 @@ namespace Lession2DBFirst.Controllers
             return View(order_Detail);
         }
 
-        // GET: Order_Detail/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +119,6 @@ namespace Lession2DBFirst.Controllers
             return View(order_Detail);
         }
 
-        // POST: Order_Detail/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

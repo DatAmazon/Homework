@@ -170,13 +170,13 @@ $.extend($.fn, {
 				break;
 			case "remove":
 				if (!argument) {
-					delete staticRules[element.name];
+					Delete staticRules[element.name];
 					return existingRules;
 				}
 				var filtered = {};
 				$.each(argument.split(/\s/), function(index, method) {
 					filtered[method] = existingRules[method];
-					delete existingRules[method];
+					Delete existingRules[method];
 				});
 				return filtered;
 			}
@@ -194,7 +194,7 @@ $.extend($.fn, {
 		// make sure required is at front
 		if (data.required) {
 			var param = data.required;
-			delete data.required;
+			Delete data.required;
 			data = $.extend({required: param}, data);
 		}
 		
@@ -415,7 +415,7 @@ $.extend($.validator, {
 			this.currentElements = $(element);
 			var result = this.check( element );
 			if ( result ) {
-				delete this.invalid[element.name];
+				Delete this.invalid[element.name];
 			} else {
 				this.invalid[element.name] = true;
 			}
@@ -819,7 +819,7 @@ $.extend($.validator, {
 			// sometimes synchronization fails, make sure pendingRequest is never < 0
 			if (this.pendingRequest < 0)
 				this.pendingRequest = 0;
-			delete this.pending[element.name];
+			Delete this.pending[element.name];
 			if ( valid && this.pendingRequest == 0 && this.formSubmitted && this.form() ) {
 				$(this.currentForm).submit();
 				this.formSubmitted = false;
@@ -893,7 +893,7 @@ $.extend($.validator, {
 		
 		// maxlength may be returned as -1, 2147483647 (IE) and 524288 (safari) for text inputs
 		if (rules.maxlength && /-1|2147483647|524288/.test(rules.maxlength)) {
-			delete rules.maxlength;
+			Delete rules.maxlength;
 		}
 		
 		return rules;
@@ -922,7 +922,7 @@ $.extend($.validator, {
 		$.each(rules, function(prop, val) {
 			// ignore rule when param is explicitly false, eg. required:false
 			if (val === false) {
-				delete rules[prop];
+				Delete rules[prop];
 				return;
 			}
 			if (val.param || val.depends) {
@@ -938,7 +938,7 @@ $.extend($.validator, {
 				if (keepRule) {
 					rules[prop] = val.param !== undefined ? val.param : true;
 				} else {
-					delete rules[prop];
+					Delete rules[prop];
 				}
 			}
 		});
@@ -964,19 +964,19 @@ $.extend($.validator, {
 			// auto-create ranges
 			if (rules.min && rules.max) {
 				rules.range = [rules.min, rules.max];
-				delete rules.min;
-				delete rules.max;
+				Delete rules.min;
+				Delete rules.max;
 			}
 			if (rules.minlength && rules.maxlength) {
 				rules.rangelength = [rules.minlength, rules.maxlength];
-				delete rules.minlength;
-				delete rules.maxlength;
+				Delete rules.minlength;
+				Delete rules.maxlength;
 			}
 		}
 		
 		// To support custom messages in metadata ignore rule methods titled "messages"
 		if (rules.messages) {
-			delete rules.messages;
+			Delete rules.messages;
 		}
 		
 		return rules;

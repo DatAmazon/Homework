@@ -4,47 +4,63 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h3 class="text-primary">Chi tiết SP - @Model.OrderDetailId</h3>
 
 <div>
-    <h4>Order_Detail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="table-dark">
+                <th style="text-align: center">
+                    Mã CTĐH
+                </th>
+                <th style="text-align: center">
+                    Mã SP
+                </th>
+                <th style="text-align: center">
+                    Mã đơn hàng
+                </th>
+                <th style="text-align: center">
+                    Số lượng
+                </th>
+                <th style="text-align: center">
+                    Giá
+                </th>
+                <th style="text-align: center">
+                    Thao tác
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-info">
+                <td>
+                    @Model.OrderDetailId
+                </td>
+                <td>
+                    @Model.ProductId
+                </td>
+                <td>
+                    @Model.OrderId
+                </td>
+                <td>
+                    @Model.Quantity
+                </td>
+                <td>
+                    @Model.UnitPrice
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = Model.OrderDetailId }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = Model.OrderDetailId }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = Model.OrderDetailId }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UnitPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UnitPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Order.OrderId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Order.OrderId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Product.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Product.Name)
-        </dd>
-
-    </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderDetailId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-warning" }) |
+    @Html.ActionLink("Lưu", "Edit", new { id = Model.OrderDetailId }, new { @class = "btn btn-primary" })
 </p>
+
+
+

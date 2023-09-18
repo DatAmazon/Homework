@@ -4,19 +4,16 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Order</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <p>Tên KH</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
@@ -24,25 +21,30 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DateTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateTime, new { htmlAttributes = new { @class = "form-control" } })
+                <p>Thời gian</p>
+
+                @*@Html.EditorFor(model => model.DateTime, new { htmlAttributes = new { @class = "form-control datetimepicker" } })*@
+
+                <input class="form-control" name="DateTime" value="@Html.Raw(DateTime.Now.ToString("yyyy-MM-dd HH:mm").Replace(' ','T'))" type="datetime-local" />
                 @Html.ValidationMessageFor(model => model.DateTime, "", new { @class = "text-danger" })
+
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+
+        <div class="form-group ">
+            <div class="col-md-offset-2 col-md-10 mt-3">
+                <input type="submit" value="Thêm" class="btn btn-success" /> |
+                @Html.ActionLink("Trở về", "Index", null, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+

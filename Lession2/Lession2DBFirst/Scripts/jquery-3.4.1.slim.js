@@ -875,7 +875,7 @@ function createCache() {
 		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
 		if ( keys.push( key + " " ) > Expr.cacheLength ) {
 			// Only keep the most recent entries
-			delete cache[ keys.shift() ];
+			Delete cache[ keys.shift() ];
 		}
 		return (cache[ key + " " ] = value);
 	}
@@ -4053,7 +4053,7 @@ Data.prototype = {
 
 				// Otherwise secure it in a non-enumerable property
 				// configurable must be true to allow the property to be
-				// deleted when data is removed
+				// Deleted when data is removed
 				} else {
 					Object.defineProperty( owner, this.expando, {
 						value: value,
@@ -4151,7 +4151,7 @@ Data.prototype = {
 			i = key.length;
 
 			while ( i-- ) {
-				delete cache[ key[ i ] ];
+				Delete cache[ key[ i ] ];
 			}
 		}
 
@@ -4165,7 +4165,7 @@ Data.prototype = {
 			if ( owner.nodeType ) {
 				owner[ this.expando ] = undefined;
 			} else {
-				delete owner[ this.expando ];
+				Delete owner[ this.expando ];
 			}
 		}
 	},
@@ -4395,7 +4395,7 @@ jQuery.extend( {
 			}
 
 			// Clear up the last queue stop function
-			delete hooks.stop;
+			Delete hooks.stop;
 			fn.call( elem, next, hooks );
 		}
 
@@ -5179,7 +5179,7 @@ jQuery.event = {
 					jQuery.removeEvent( elem, type, elemData.handle );
 				}
 
-				delete events[ type ];
+				Delete events[ type ];
 			}
 		}
 
@@ -5827,7 +5827,7 @@ function cloneCopyEvent( src, dest ) {
 		events = pdataOld.events;
 
 		if ( events ) {
-			delete pdataCur.handle;
+			Delete pdataCur.handle;
 			pdataCur.events = {};
 
 			for ( type in events ) {
@@ -6042,13 +6042,13 @@ jQuery.extend( {
 					}
 
 					// Support: Chrome <=35 - 45+
-					// Assign undefined instead of using delete, see Data#remove
+					// Assign undefined instead of using Delete, see Data#remove
 					elem[ dataPriv.expando ] = undefined;
 				}
 				if ( elem[ dataUser.expando ] ) {
 
 					// Support: Chrome <=35 - 45+
-					// Assign undefined instead of using delete, see Data#remove
+					// Assign undefined instead of using Delete, see Data#remove
 					elem[ dataUser.expando ] = undefined;
 				}
 			}
@@ -6397,7 +6397,7 @@ function addGetHookIf( conditionFn, hookFn ) {
 
 				// Hook not needed (or it's not possible to use it due
 				// to missing dependency), remove it.
-				delete this.get;
+				Delete this.get;
 				return;
 			}
 
@@ -7082,7 +7082,7 @@ jQuery.fn.extend( {
 
 	removeProp: function( name ) {
 		return this.each( function() {
-			delete this[ jQuery.propFix[ name ] || name ];
+			Delete this[ jQuery.propFix[ name ] || name ];
 		} );
 	}
 } );
