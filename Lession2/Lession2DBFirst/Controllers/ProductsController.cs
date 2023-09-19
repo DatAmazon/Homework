@@ -49,7 +49,7 @@ namespace Lession2DBFirst.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,Name,Price")] Product product)
+        public ActionResult Create([Bind(Include = "ProductID,Name,Price,Quantity")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace Lession2DBFirst.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,Name,Price")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,Name,Price,Quantity")] Product product)
         {
             if (ModelState.IsValid)
             {

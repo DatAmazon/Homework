@@ -25,6 +25,7 @@
     <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
   </EntityType>
   <Association Name="FK_Order_Detail_Order">
     <End Role="Order" Type="Self.Order" Multiplicity="1" />

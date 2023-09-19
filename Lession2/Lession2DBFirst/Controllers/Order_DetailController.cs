@@ -60,10 +60,6 @@ namespace Lession2DBFirst.Controllers
             ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", orderDetail.OrderId);
             ViewBag.ProductId = new SelectList(db.Products, "ProductID", "Name", orderDetail.ProductId);
             return View(orderDetail);
-
-            //ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId");
-            //ViewBag.ProductId = new SelectList(db.Products, "ProductID", "Name");
-            //return View();
         }
 
         [HttpPost]
@@ -73,14 +69,25 @@ namespace Lession2DBFirst.Controllers
             if (ModelState.IsValid)
             {
                 db.Order_Detail.Add(order_Detail);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var product = db.Products.Find(order_Detail.ProductId);
+                if(product != null && product.Quantity >= order_Detail.Quantity)
+                {
+                    product.Quantity -= order_Detail.Quantity;
+                    db.Entry(product).State = EntityState.Modified;//lưu thay đổi vào DB
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Sản phẩm không đủ số lượng");
+                }
             }
-
             ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", order_Detail.OrderId);
             ViewBag.ProductId = new SelectList(db.Products, "ProductID", "Name", order_Detail.ProductId);
             return View(order_Detail);
         }
+
+       
 
         public ActionResult Edit(int? id)
         {
@@ -104,13 +111,24 @@ namespace Lession2DBFirst.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(order_Detail).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var product = db.Products.Find(order_Detail.ProductId);
+                if (product != null && product.Quantity >= order_Detail.Quantity)
+                {
+                    product.Quantity += order_Detail.Quantity;
+                    db.Entry(product).State = EntityState.Modified;//lưu thay đổi vào DB
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Sản phẩm không đủ số lượng");
+                }
             }
             ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", order_Detail.OrderId);
             ViewBag.ProductId = new SelectList(db.Products, "ProductID", "Name", order_Detail.ProductId);
             return View(order_Detail);
+
+
         }
 
         public ActionResult Delete(int? id)
