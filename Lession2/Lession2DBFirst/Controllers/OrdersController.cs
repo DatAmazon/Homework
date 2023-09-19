@@ -20,23 +20,28 @@ namespace Lession2DBFirst.Controllers
                       select o;
             if (!String.IsNullOrEmpty(searchString))
             {
-                ord = ord.Where(o =>o.CustomerName.Contains(searchString));
+                ord = ord.Where(o => o.CustomerName.Contains(searchString));
             }
+            ViewBag.listOrder = new List<Order>();
             return View(ord);
         }
 
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public ActionResult Index()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Order order = db.Orders.Find(id);
-            if (order == null)
-            {
-                return HttpNotFound();
-            }
-            return View(order);
+            DateTime from = DateTime.Parse(Request.Form["dtReviewTime_from"]);
+            DateTime to = DateTime.Parse(Request.Form["dtReviewTime_to"]);
+            Lession2DBEntities db = new Lession2DBEntities();
+            ViewBag.listOrder = db.Orders.Where(x => x.DateTime >= from && x.DateTime <= to).ToList();
+            return View();
+        }
+
+        public ActionResult Details(int id)
+        {
+            var order_Detail = from od in db.Order_Detail
+                               where od.OrderId == id
+                               select od;
+            return View(order_Detail);
         }
 
         public ActionResult Create()

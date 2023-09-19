@@ -46,11 +46,24 @@ namespace Lession2DBFirst.Controllers
             return View(order_Detail);
         }
 
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId");
-            ViewBag.ProductId = new SelectList(db.Products, "ProductID", "Name");
-            return View();
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Product");
+            }
+            var orderDetail = new Order_Detail
+            {
+                ProductId = id.Value
+            };
+
+            ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId", orderDetail.OrderId);
+            ViewBag.ProductId = new SelectList(db.Products, "ProductID", "Name", orderDetail.ProductId);
+            return View(orderDetail);
+
+            //ViewBag.OrderId = new SelectList(db.Orders, "OrderId", "OrderId");
+            //ViewBag.ProductId = new SelectList(db.Products, "ProductID", "Name");
+            //return View();
         }
 
         [HttpPost]

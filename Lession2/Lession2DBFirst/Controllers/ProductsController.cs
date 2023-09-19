@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations.Model;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -36,6 +37,8 @@ namespace Lession2DBFirst.Controllers
             {
                 return HttpNotFound();
             }
+            TempData["ProductName"] = product.Name;
+            TempData["ProductPrice"] = product.Price;
             return View(product);
         }
 

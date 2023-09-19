@@ -9,10 +9,22 @@
 @using (Html.BeginForm())
 {
     <p>
-        <input name="search" class="btn-outline-primary" placeholder="Nhập tên KH cần tìm kiếm" />
+        <input name="searchString" class="btn-outline-primary" placeholder="Nhập tên KH cần tìm kiếm" />
         <input type="submit" value="Tìm" class="btn btn-outline-success" style="margin-bottom: 3px; padding: 2px 15px; " />
     </p>
 }
+
+
+@using (Html.BeginForm("Index", "Orders", FormMethod.Post))
+{
+    <div class="card-body" style="display: flex;">
+
+        từ <span><input class="form-control" name="dtReviewTime_from" value="@Html.Raw(DateTime.Now.ToString("yyyy-MM-dd HH:mm").Replace(' ','T'))" type="datetime-local" style="width: 250px; margin: auto 10px;" /></span>
+        đến <span><input class="form-control" name="dtReviewTime_to" value="@Html.Raw(DateTime.Now.ToString("yyyy-MM-dd HH:mm").Replace(' ','T'))" type="datetime-local" style="width: 250px; margin: auto 10px;" /></span>
+        <span><input type="submit" value="Thống kê" /></span>
+    </div>
+}
+
 
 <p style="float:right;">
     @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-info text-right" })
@@ -34,7 +46,7 @@
         </th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in ViewBag?.listOrder)
     {
         <tr class="table-info">
             <td>
