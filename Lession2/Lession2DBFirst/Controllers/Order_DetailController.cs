@@ -27,7 +27,6 @@ namespace Lession2DBFirst.Controllers
 
             }
             return View(order_Detail);
-
             //var order_Detail = db.Order_Detail.Include(o => o.Order).Include(o => o.Product);
             //var order_Detail = db.Order_Detail.Include(o => o.Order).Include(o => o.Product);
             //return View(order_Detail.ToList());
@@ -54,8 +53,6 @@ namespace Lession2DBFirst.Controllers
             return View();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OrderDetailId,OrderId,ProductId,Quantity,UnitPrice")] Order_Detail order_Detail)
@@ -88,8 +85,6 @@ namespace Lession2DBFirst.Controllers
             return View(order_Detail);
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "OrderDetailId,OrderId,ProductId,Quantity,UnitPrice")] Order_Detail order_Detail)

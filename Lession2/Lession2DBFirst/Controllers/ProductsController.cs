@@ -14,11 +14,6 @@ namespace Lession2DBFirst.Controllers
     {
         private Lession2DBEntities db = new Lession2DBEntities();
 
-        //public ActionResult Index()
-        //{
-        //    return View(db.Products.ToList());
-        //}
-
         public ActionResult Index(string searchString)
         {
             var pro = from p in db.Products
@@ -49,8 +44,6 @@ namespace Lession2DBFirst.Controllers
             return View();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ProductID,Name,Price")] Product product)
@@ -79,8 +72,6 @@ namespace Lession2DBFirst.Controllers
             return View(product);
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ProductID,Name,Price")] Product product)
@@ -117,7 +108,6 @@ namespace Lession2DBFirst.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

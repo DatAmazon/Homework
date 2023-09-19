@@ -14,7 +14,6 @@ namespace Lession2DBFirst.Controllers
     {
         private Lession2DBEntities db = new Lession2DBEntities();
 
-        // GET: Orders
         public ActionResult Index(string searchString)
         {
             var ord = from o in db.Orders
@@ -26,7 +25,6 @@ namespace Lession2DBFirst.Controllers
             return View(ord);
         }
 
-        // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,15 +39,11 @@ namespace Lession2DBFirst.Controllers
             return View(order);
         }
 
-        // GET: Orders/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Orders/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "OrderId,CustomerName,DateTime")] Order order)
@@ -64,7 +58,6 @@ namespace Lession2DBFirst.Controllers
             return View(order);
         }
 
-        // GET: Orders/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,9 +72,6 @@ namespace Lession2DBFirst.Controllers
             return View(order);
         }
 
-        // POST: Orders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "OrderId,CustomerName,DateTime")] Order order)
@@ -95,7 +85,6 @@ namespace Lession2DBFirst.Controllers
             return View(order);
         }
 
-        // GET: Orders/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,7 +99,6 @@ namespace Lession2DBFirst.Controllers
             return View(order);
         }
 
-        // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
