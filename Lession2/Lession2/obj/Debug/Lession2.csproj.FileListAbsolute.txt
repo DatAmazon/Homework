@@ -77,3 +77,5 @@ D:\BTVN\Lession2\Lession2\obj\Debug\Lession2.csproj.CoreCompileInputs.cache
 D:\BTVN\Lession2\Lession2\obj\Debug\Lession2.csproj.CopyComplete
 D:\BTVN\Lession2\Lession2\obj\Debug\Lession2.dll
 D:\BTVN\Lession2\Lession2\obj\Debug\Lession2.pdb
+D:\BTVN\Lession2\Lession2\bin\DB.DbAccess.dll
+D:\BTVN\Lession2\Lession2\bin\DB.DbAccess.pdb

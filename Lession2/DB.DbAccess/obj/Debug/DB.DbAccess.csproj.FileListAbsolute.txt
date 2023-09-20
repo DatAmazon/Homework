@@ -1,0 +1,6 @@
+D:\BTVN\Lession2\DB.DbAccess\bin\Debug\DB.DbAccess.dll
+D:\BTVN\Lession2\DB.DbAccess\bin\Debug\DB.DbAccess.pdb
+D:\BTVN\Lession2\DB.DbAccess\obj\Debug\DB.DbAccess.csproj.AssemblyReference.cache
+D:\BTVN\Lession2\DB.DbAccess\obj\Debug\DB.DbAccess.csproj.CoreCompileInputs.cache
+D:\BTVN\Lession2\DB.DbAccess\obj\Debug\DB.DbAccess.dll
+D:\BTVN\Lession2\DB.DbAccess\obj\Debug\DB.DbAccess.pdb
